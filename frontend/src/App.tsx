@@ -25,7 +25,7 @@ export default function App() {
     <div className="mx-auto max-w-6xl px-5 py-10">
       <header className="mb-8">
         <h1 className="text-3xl font-semibold tracking-tight">
-          Uptime Monitor Skow
+          Uptime Monitor Test
         </h1>
         <p className="mt-1 text-muted-foreground">
           Event-driven uptime monitoring with Encore.go, Pub/Sub, and PostgreSQL
