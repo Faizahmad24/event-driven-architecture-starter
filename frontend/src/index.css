@@ -929,3 +929,31 @@ footer{
     scroll-margin-top: 102px;
   }
 }
+
+.skills span {
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    border-color 200ms ease,
+    transform 200ms ease,
+    box-shadow 200ms ease;
+}
+
+@media (hover: hover) {
+  .skills span:hover {
+    background-color: #2c3927;
+    color: #fff;
+    border-color: #2c3927;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px #26321a20;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skills span {
+    transition: none;
+  }
+  .skills span:hover {
+    transform: none;
+  }
+}
