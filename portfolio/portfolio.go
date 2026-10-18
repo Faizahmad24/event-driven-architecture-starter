@@ -179,8 +179,8 @@ func Admin(w http.ResponseWriter, r *http.Request) { adminHandler(w, r) }
 func adminHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Cache-Control", "no-store")
 	if r.Method != http.MethodGet {
-		origin, err := url.Parse(r.Header.Get("Origin"))
-		if err != nil || origin.Host != r.Host || (origin.Scheme != "http" && origin.Scheme != "https") {
+		// Use the public deployment origin instead of the proxy-facing Host.
+		if !allowedAdminOrigin(r) {
 			fail(w, 403, "Origin is not allowed.")
 			return
 		}
