@@ -1,3 +1,5 @@
+> Portfolio: project ini sudah direfactor. Lihat [PORTFOLIO.md](./PORTFOLIO.md) untuk setup, login dashboard, dan struktur baru. Dokumentasi template asli dipertahankan di bawah ini.
+
 # Event-Driven Architecture Starter
 
 This is an event-driven microservices application using Pub/Sub for asynchronous communication between services.
