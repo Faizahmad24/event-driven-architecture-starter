@@ -217,3 +217,22 @@ it('shows a publishing spinner and locks editing until the save completes', asyn
   expect(screen.queryByRole('button', { name: 'Publishing…' })).not.toBeInTheDocument();
   expect(name).toBeEnabled();
 });
+
+it('toggles password visibility without submitting or changing the password', async () => {
+  location.hash = '#admin';
+  const user = userEvent.setup(); render(<App />);
+  const input = await screen.findByLabelText('Admin password');
+  expect(input).toHaveAttribute('type', 'password');
+  await user.type(input, 'example-password');
+  const show = screen.getByRole('button', { name: 'Show password' });
+  expect(show).toHaveAttribute('aria-pressed', 'false');
+  await user.click(show);
+  expect(input).toHaveAttribute('type', 'text');
+  expect(input).toHaveValue('example-password');
+  const hide = screen.getByRole('button', { name: 'Hide password' });
+  expect(hide).toHaveAttribute('aria-pressed', 'true');
+  await user.click(hide);
+  expect(input).toHaveAttribute('type', 'password');
+  expect(input).toHaveValue('example-password');
+  expect(fetchMock.mock.calls.some(([path]) => path === '/api/admin/login')).toBe(false);
+});

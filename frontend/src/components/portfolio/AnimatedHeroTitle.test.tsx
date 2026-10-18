@@ -1,4 +1,4 @@
-﻿import { act, render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import AnimatedHeroTitle from "./AnimatedHeroTitle";
 
@@ -15,13 +15,13 @@ describe("Animated hero title", () => {
     expect(text()).toBe("");
     act(() => vi.advanceTimersByTime(1));
     expect(text()).toBe("G");
-    act(() => vi.advanceTimersByTime(4 * 70));
+    act(() => vi.advanceTimersByTime(4 * 120));
     expect(text()).toBe("GoDev");
-    act(() => vi.advanceTimersByTime(1999));
+    act(() => vi.advanceTimersByTime(2999));
     expect(text()).toBe("GoDev");
     act(() => vi.advanceTimersByTime(1 + 4 * 35));
     expect(text()).toBe("");
-    act(() => vi.advanceTimersByTime(70));
+    act(() => vi.advanceTimersByTime(120));
     expect(text()).toBe("G");
     expect(container.querySelector(".typing-space")).toHaveTextContent("Go");
     unmount();

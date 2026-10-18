@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function AnimatedHeroTitle({ role, tagline, startDelay = 1100 }: {
   role: string;
@@ -36,12 +36,12 @@ export default function AnimatedHeroTitle({ role, tagline, startDelay = 1100 }: 
       setCount(position);
       if (position === total) {
         deleting = true;
-        timer = setTimeout(tick, 2000);
+        timer = setTimeout(tick, 3000);
       } else if (position === 0) {
         deleting = false;
-        timer = setTimeout(tick, 70);
+        timer = setTimeout(tick, 120);
       } else {
-        timer = setTimeout(tick, deleting ? 35 : 70);
+        timer = setTimeout(tick, deleting ? 35 : 120);
       }
     }
     timer = setTimeout(tick, startDelay);

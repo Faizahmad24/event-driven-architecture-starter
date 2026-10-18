@@ -888,3 +888,44 @@ footer{
 .toast-close { border: 0; background: transparent; color: inherit; font-size: 22px; line-height: 1; padding: 2px; }
 @media (max-width: 760px) { .dashboard-toast { right: 16px; top: 16px; } }
 @media (prefers-reduced-motion: reduce) { .spinner { animation: none; } }
+
+.admin-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.password-label { font-size: 12px; color: #536047; font-weight: 550; }
+.password-field { position: relative; }
+.password-field input { padding-right: 52px; }
+.password-toggle {
+  position: absolute;
+  right: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: #65794e;
+}
+.password-toggle:hover { background: #edf2e6; }
+
+.portfolio > .nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #f8f9f4;
+}
+.portfolio .section,
+.portfolio .contact {
+  scroll-margin-top: 124px;
+}
+@media (max-width: 760px) {
+  .portfolio .section,
+  .portfolio .contact {
+    scroll-margin-top: 102px;
+  }
+}

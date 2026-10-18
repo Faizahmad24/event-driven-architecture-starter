@@ -32,6 +32,7 @@ export default function Dashboard({ content, onPublish }: {
 }) {
   const [auth, setAuth] = useState<boolean | null>(null);
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [draft, setDraft] = useState<Content>(() => structuredClone(content));
   const [busy, setBusy] = useState(false);
   const [uploading, setUploading] = useState<number | "avatar" | null>(null);
@@ -72,6 +73,7 @@ export default function Dashboard({ content, onPublish }: {
     try {
       await api("/api/admin/login", "POST", { password });
       setPassword("");
+      setShowPassword(false);
       setAuth(true);
     } catch (err) {
       setError((err as Error).message);
@@ -176,10 +178,39 @@ export default function Dashboard({ content, onPublish }: {
           <h1>Welcome<br /><span className="serif">back.</span></h1>
           <p>Sign in to manage your story and your work.</p>
           <form onSubmit={login}>
-            <label className="field">
-              <span>Admin password</span>
-              <input type="password" autoComplete="current-password" required value={password} onChange={(e) => setPassword(e.target.value)} />
-            </label>
+            <div className="field">
+              <label className="password-label" htmlFor="admin-password">Admin password</label>
+              <div className="password-field">
+                <input
+                  id="admin-password"
+                  type={showPassword ? "text" : "password"}
+                  autoComplete="current-password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <button
+                  type="button"
+                  className="password-toggle"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  aria-pressed={showPassword}
+                  onClick={() => setShowPassword((visible) => !visible)}
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    {showPassword ? (
+                      <>
+                        <path d="m3 3 18 18M10.6 10.6a2 2 0 0 0 2.8 2.8M9.9 5.2A11 11 0 0 1 12 5c7 0 10 7 10 7a17 17 0 0 1-3.2 4.2M6.3 6.3C3.3 8.3 2 12 2 12s3 7 10 7a11 11 0 0 0 5.7-1.6" />
+                      </>
+                    ) : (
+                      <>
+                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7S2 12 2 12Z" />
+                        <circle cx="12" cy="12" r="3" />
+                      </>
+                    )}
+                  </svg>
+                </button>
+              </div>
+            </div>
             {error && <p role="alert" className="error">{error}</p>}
             <button className="primary" disabled={busy || uploading !== null}>{busy ? "Signing in…" : "Sign in →"}</button>
           </form>
